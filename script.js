@@ -6,10 +6,16 @@ function sendMail() {
         message: document.getElementById("message").value
     };
 
-    emailjs.send('service_vc4tysf', 'template_1i4hwjf', tempParams).then(function (res){
-        alert("Success!" + res.status);
-    })
+    emailjs.send('service_vc4tysf', 'template_1i4hwjf', tempParams).then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        Swal.fire('Message Sent', 'Your message has been successfully sent!', 'success');
+    }, function(error) {
+        console.log('FAILED...', error);
+        Swal.fire('Error', 'There was an issue sending your message. Please try again later.', 'error');
+    });
 }
+
+
 
 $(document).ready(function () {
     $(window).scroll(function () {
